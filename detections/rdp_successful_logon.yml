@@ -1,0 +1,23 @@
+title: Remote Desktop Protocol Successful Logon
+id: e8bfbb3e-ba8f-4c06-82ad-8b6f116ced5b
+status: experimental
+description: Detects successful Windows logons associated with Remote Desktop Protocol activity.
+references:
+    - https://attack.mitre.org/techniques/T1021/001/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.t1021.001
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4624
+        LogonType: 10
+    condition: selection
+falsepositives:
+    - Legitimate administrator RDP sessions
+    - Authorized remote support activity
+    - Remote management operations
+level: medium

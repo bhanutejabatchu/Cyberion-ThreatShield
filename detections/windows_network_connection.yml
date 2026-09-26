@@ -1,0 +1,21 @@
+title: Windows Network Connection Activity
+id: f707a0b4-aa75-4903-bd67-634376f8cb8a
+status: experimental
+description: Detects Sysmon Event ID 3 network connection events that provide visibility into outbound and inbound network activity.
+references:
+    - https://attack.mitre.org/techniques/T1049/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.discovery
+logsource:
+    product: windows
+detection:
+    selection:
+        EventID: 3
+    condition: selection
+falsepositives:
+    - Legitimate application network connections
+    - Windows services communicating over the network
+    - Approved administrative and monitoring tools
+level: low

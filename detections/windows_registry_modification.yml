@@ -1,0 +1,21 @@
+title: Windows Registry Value Modification
+id: 26c45e29-6707-4d9e-838b-8085414f6da4
+status: experimental
+description: Detects Sysmon Event ID 13 registry value modification events for visibility into Windows registry changes.
+references:
+    - https://attack.mitre.org/techniques/T1112/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.t1112
+logsource:
+    product: windows
+detection:
+    selection:
+        EventID: 13
+    condition: selection
+falsepositives:
+    - Legitimate application configuration
+    - Software installation and updates
+    - Authorized system administration
+level: medium

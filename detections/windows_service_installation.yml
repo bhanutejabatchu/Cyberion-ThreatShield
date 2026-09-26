@@ -1,0 +1,21 @@
+title: Windows Service Installation
+id: c7196a10-d838-40d9-8d2b-da333ca07c78
+status: experimental
+description: Detects Windows System Event ID 7045 indicating that a new service has been installed.
+references:
+    - https://attack.mitre.org/techniques/T1543/003/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.t1543.003
+logsource:
+    product: windows
+detection:
+    selection:
+        EventID: 7045
+    condition: selection
+falsepositives:
+    - Legitimate software installation
+    - Authorized system administration
+    - Enterprise software deployment
+level: medium

@@ -1,0 +1,22 @@
+title: SMB Windows Admin Share Access
+id: bf8597ff-ef8c-4acb-aadd-ae22aa32822b
+status: experimental
+description: Detects Windows Security Event ID 5145 indicating access to a network share, which can provide visibility into SMB and Windows administrative share activity.
+references:
+    - https://attack.mitre.org/techniques/T1021/002/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.t1021.002
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 5145
+    condition: selection
+falsepositives:
+    - Legitimate file sharing
+    - Administrative activity
+    - Enterprise software accessing network shares
+level: medium

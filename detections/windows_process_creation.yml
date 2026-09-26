@@ -1,0 +1,21 @@
+title: Windows Process Creation Activity
+id: b885494c-b2a1-4525-94d5-c8edc36deca7
+status: experimental
+description: Detects Windows process creation events recorded by Sysmon Event ID 1.
+references:
+    - https://attack.mitre.org/techniques/T1059/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.execution
+logsource:
+    product: windows
+detection:
+    selection:
+        EventID: 1
+    condition: selection
+falsepositives:
+    - Normal Windows process execution
+    - Legitimate applications and services
+    - Software installation and maintenance
+level: low

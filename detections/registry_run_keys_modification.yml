@@ -1,0 +1,24 @@
+title: Windows Registry Run Keys Modification
+id: d7bf962e-83e4-4291-ac28-2f321acb8dfb
+status: experimental
+description: Detects registry modification events involving common Windows Run and RunOnce keys that can be used for persistence.
+references:
+    - https://attack.mitre.org/techniques/T1547/001/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.t1547.001
+logsource:
+    product: windows
+detection:
+    selection:
+        EventID: 13
+        TargetObject|contains:
+            - '\Software\Microsoft\Windows\CurrentVersion\Run'
+            - '\Software\Microsoft\Windows\CurrentVersion\RunOnce'
+    condition: selection
+falsepositives:
+    - Legitimate software installation
+    - Software updates
+    - Authorized application configuration
+level: medium

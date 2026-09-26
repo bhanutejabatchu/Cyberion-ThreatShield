@@ -1,0 +1,21 @@
+title: Suspicious DLL Load From Unusual Location
+id: 95bd5632-1c47-43dd-949e-281aed6a421e
+status: experimental
+description: Detects Sysmon Event ID 7 indicating DLL image loading activity that may be associated with DLL search order hijacking.
+references:
+    - https://attack.mitre.org/techniques/T1574/001/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.t1574.001
+logsource:
+    product: windows
+detection:
+    selection:
+        EventID: 7
+    condition: selection
+falsepositives:
+    - Legitimate application DLL loading
+    - Software installation and updates
+    - Authorized troubleshooting activity
+level: medium

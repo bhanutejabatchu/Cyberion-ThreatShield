@@ -1,0 +1,22 @@
+title: Suspicious Scheduled Task Creation
+id: f1495082-32f8-4cdf-9e66-c76d161ca8bb
+status: experimental
+description: Detects Windows Security Event ID 4698 indicating creation of a scheduled task.
+references:
+    - https://attack.mitre.org/techniques/T1053/005/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.t1053.005
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4698
+    condition: selection
+falsepositives:
+    - Legitimate administrative scheduled tasks
+    - Software installation and update processes
+    - Enterprise management tools
+level: medium

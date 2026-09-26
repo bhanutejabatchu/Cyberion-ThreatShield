@@ -1,0 +1,22 @@
+title: Suspicious LSASS Process Access
+id: 2acccee4-84b7-4fac-8aed-f0c40911a216
+status: experimental
+description: Detects Sysmon Process Access events targeting the LSASS process, which can indicate credential access activity.
+references:
+    - https://attack.mitre.org/techniques/T1003/001/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.t1003.001
+logsource:
+    product: windows
+detection:
+    selection:
+        EventID: 10
+        TargetImage|endswith: '\lsass.exe'
+    condition: selection
+falsepositives:
+    - Legitimate security software
+    - Authorized forensic tools
+    - Endpoint monitoring and management software
+level: high

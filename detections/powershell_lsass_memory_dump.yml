@@ -1,0 +1,26 @@
+title: PowerShell LSASS Memory Dump Activity
+id: 260f9e57-23f9-4e9e-9521-1d39e6714005
+status: experimental
+description: Detects PowerShell Script Block Logging events containing commands associated with LSASS memory dumping.
+references:
+    - https://attack.mitre.org/techniques/T1003/001/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.t1003.001
+logsource:
+    product: windows
+    service: powershell
+detection:
+    selection_event:
+        EventID: 4104
+    selection_lsass:
+        ScriptBlockText|contains:
+            - Get-Process lsass
+            - MiniDumpWriteDump
+            - MiniDumpWithFullMemory
+    condition: selection_event and selection_lsass
+falsepositives:
+    - Authorized security testing
+    - Legitimate forensic or incident-response activity
+level: high

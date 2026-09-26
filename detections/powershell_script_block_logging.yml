@@ -1,0 +1,21 @@
+title: PowerShell Script Block Logging Activity
+id: cef1c56d-50c7-464d-9594-277997209013
+status: experimental
+description: Detects PowerShell Script Block Logging events that record executed PowerShell script content.
+references:
+    - https://attack.mitre.org/techniques/T1059/001/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.t1059.001
+logsource:
+    product: windows
+detection:
+    selection:
+        EventID: 4104
+    condition: selection
+falsepositives:
+    - Legitimate PowerShell administration
+    - System management scripts
+    - Software deployment and maintenance
+level: low

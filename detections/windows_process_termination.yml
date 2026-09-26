@@ -1,0 +1,21 @@
+title: Windows Process Termination Activity
+id: a2a2a73b-5f91-4d2a-986f-6f9b75aab5b5
+status: experimental
+description: Detects Sysmon Event ID 5 process termination events for visibility into Windows process lifecycle activity.
+references:
+    - https://attack.mitre.org/techniques/T1489/
+author: Cyberion ThreatShield
+date: 2026-09-26
+tags:
+    - attack.impact
+logsource:
+    product: windows
+detection:
+    selection:
+        EventID: 5
+    condition: selection
+falsepositives:
+    - Normal application termination
+    - Windows service shutdown
+    - System maintenance and software updates
+level: low
