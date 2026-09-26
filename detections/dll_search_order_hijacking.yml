@@ -1,13 +1,13 @@
-title: Suspicious DLL Load From Unusual Location
+title: Windows DLL Module Load Activity
 id: 95bd5632-1c47-43dd-949e-281aed6a421e
 status: experimental
-description: Detects Sysmon Event ID 7 indicating DLL image loading activity that may be associated with DLL search order hijacking.
+description: Detects Sysmon Event ID 7 DLL module load activity for visibility into shared module execution.
 references:
-    - https://attack.mitre.org/techniques/T1574/001/
+    - https://attack.mitre.org/techniques/T1129/
 author: Cyberion ThreatShield
 date: 2026-09-26
 tags:
-    - attack.t1574.001
+    - attack.t1129
 logsource:
     product: windows
 detection:

@@ -1,21 +1,22 @@
-title: Windows Process Termination Activity
-id: a2a2a73b-5f91-4d2a-986f-6f9b75aab5b5
+title: Windows Command Shell Execution
+id: 78e8b422-2715-474f-9d20-5db4c4bae8ee
 status: experimental
-description: Detects Sysmon Event ID 5 process termination events for visibility into Windows process lifecycle activity.
+description: Detects Sysmon process creation events for cmd.exe, providing visibility into Windows Command Shell execution.
 references:
-    - https://attack.mitre.org/techniques/T1489/
+    - https://attack.mitre.org/techniques/T1059/003/
 author: Cyberion ThreatShield
 date: 2026-09-26
 tags:
-    - attack.impact
+    - attack.t1059.003
 logsource:
     product: windows
 detection:
     selection:
-        EventID: 5
+        EventID: 1
+        Image|endswith: '\cmd.exe'
     condition: selection
 falsepositives:
-    - Normal application termination
-    - Windows service shutdown
-    - System maintenance and software updates
-level: low
+    - Legitimate administrative command-line activity
+    - Software installation and maintenance
+    - Authorized system scripts
+level: medium

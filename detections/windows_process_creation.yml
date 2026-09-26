@@ -1,18 +1,19 @@
-title: Windows Process Creation Activity
+title: Windows User Discovery via Whoami
 id: b885494c-b2a1-4525-94d5-c8edc36deca7
 status: experimental
-description: Detects Windows process creation events recorded by Sysmon Event ID 1.
+description: Detects Sysmon process creation events where whoami.exe is executed to identify the current Windows user.
 references:
-    - https://attack.mitre.org/techniques/T1059/
+    - https://attack.mitre.org/techniques/T1033/
 author: Cyberion ThreatShield
 date: 2026-09-26
 tags:
-    - attack.execution
+    - attack.discovery
 logsource:
     product: windows
 detection:
     selection:
         EventID: 1
+        Image|endswith: '\whoami.exe'
     condition: selection
 falsepositives:
     - Normal Windows process execution

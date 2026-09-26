@@ -1,20 +1,28 @@
-title: Windows File Creation Activity
-id: 13d67053-1e7c-45ba-92ec-2877fc255ab4
+title: LSASS Memory Dump File Creation
+id: 907bea5a-5e9d-4a0c-8e47-84dddcf110a3
 status: experimental
-description: Detects Sysmon Event ID 11 file creation events for visibility into files created on Windows systems.
+description: Detects Sysmon file creation events for files associated with LSASS memory dumps.
 references:
-    - https://attack.mitre.org/techniques/T1105/
+    - https://attack.mitre.org/techniques/T1003/001/
 author: Cyberion ThreatShield
 date: 2026-09-26
 tags:
+    - attack.t1003.001
 logsource:
     product: windows
 detection:
-    selection:
+    selection_event:
         EventID: 11
-    condition: selection
+    selection_filename:
+        TargetFilename|contains:
+            - '\lsass.dmp'
+            - '\lsass.exe_'
+            - '\lsass ('
+            - '\minidump_'
+            - '\dumpert.dmp'
+    condition: selection_event and selection_filename
 falsepositives:
-    - Normal application file creation
-    - Software installation and updates
-    - Temporary files created by legitimate applications
-level: low
+    - Authorized forensic memory acquisition
+    - Incident response investigations
+    - Security testing
+level: high

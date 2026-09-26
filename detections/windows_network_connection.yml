@@ -1,18 +1,19 @@
-title: Windows Network Connection Activity
+title: Remote Desktop Protocol Network Connection
 id: f707a0b4-aa75-4903-bd67-634376f8cb8a
 status: experimental
-description: Detects Sysmon Event ID 3 network connection events that provide visibility into outbound and inbound network activity.
+description: Detects Sysmon Event ID 3 network connection events involving TCP port 3389, commonly used by Remote Desktop Protocol.
 references:
-    - https://attack.mitre.org/techniques/T1049/
+    - https://attack.mitre.org/techniques/T1021/001/
 author: Cyberion ThreatShield
 date: 2026-09-26
 tags:
-    - attack.discovery
+    - attack.t1021.001
 logsource:
     product: windows
 detection:
     selection:
         EventID: 3
+        DestinationPort: 3389
     condition: selection
 falsepositives:
     - Legitimate application network connections
